@@ -16,9 +16,9 @@ export class AuthenticationService {
     console.log(username + ' ' + password);
     const token = this.generateBasicAuthToken(username, password);
 
-    const headers = new HttpHeaders().set('Authorization', `Basic ${token}`);
-    headers.set('X-Requested-With', 'XMLHttpRequest');
+    const headers = new HttpHeaders().set('Authorization', `Basic ${token}`).set('X-Requested-With', 'XMLHttpRequest');
 
+    console.log(token);
     return this.http
     .get(`${this.url}authenticate`, {headers})
     .pipe(

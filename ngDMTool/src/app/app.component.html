@@ -1,23 +1,25 @@
 <body id='{{theme}}'>
 <router-outlet></router-outlet>
-  <div *ngIf='!checkLogin()'>
-      <form #form="ngForm">
-          Username: <input type="text" name="username" ngModel>
-          Password: <input type="text" name="password" ngModel>
 
-          <input type="submit" value="Log In" (click)=login(form)>
-        </form>
+<div *ngIf='!checkLogin()'>
+  <form #form="ngForm">
+    Username: <input type="text" name="username" ngModel>
+    Password: <input type="text" name="password" ngModel>
 
-        <input *ngIf=checkLogin() type="submit" value="Logout" (click)=logout()>
+    <input type="submit" value="Log In" (click)=login(form)>
+  </form>
 
-        <form #form="ngForm" *ngIf=!checkLogin()>
-            <h1>REGISTER</h1>
-            Email: <input type="text" name="username" ngModel>
-            Password: <input type="text" name="password" ngModel>
+  <input *ngIf=checkLogin() type="submit" value="Logout" (click)=logout()>
 
-            <input type="submit" value="Submit" (click)=register(form)>
-          </form>
-  </div>
+  <form #form2="ngForm">
+    <h1>REGISTER</h1>
+    Email: <input type="text" name="username" ngModel>
+    Password: <input type="text" name="password" ngModel>
+
+    <input type="submit" value="Submit" (click)=register(form2)>
+  </form>
+</div>
+<a id='license' href='http://www.opengamingfoundation.org/ogl.html'><button class='btn btn'>License</button></a>
   <input id='logout' class='btn btn' *ngIf=checkLogin() type="submit" value="Logout" (click)=logout()>
   <select class="form-control col-sm-1" id="sel1" [(ngModel)]=theme>
     <option value='snow'>Snow</option>

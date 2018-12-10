@@ -6,7 +6,6 @@ import { LibraryComponent } from './library/library.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
-  { path: 'login', component: AuthenticationComponent },
   { path: 'library', component: LibraryComponent }
 ];
 

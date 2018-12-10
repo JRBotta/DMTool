@@ -32,7 +32,10 @@ public class MonsterController {
 	// Need to include user id in path to get all notes for a specific campaign
 	@RequestMapping(path = "monster/all", method = RequestMethod.GET)
 	public Set<Monster> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		return monServ.index(principal.getName());
+		if (principal != null) {
+			return monServ.index(principal.getName());
+		}
+		return monServ.index("admin");
 	}
 
 	@RequestMapping(path = "monster/{mid}")

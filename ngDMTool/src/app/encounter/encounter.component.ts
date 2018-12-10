@@ -37,13 +37,13 @@ export class EncounterComponent implements OnInit {
   }
   roll() {
     this.rolled = 0;
-    this.combat.forEach(function(combatant) {
-      if (combatant.initiative === null) {
-        combatant.roll = Math.ceil(Math.random() * 20) + combatant.dexterity;
+    for (let i = 0; i < this.combat.length; i++) {
+      if (this.combat[i].initiative === null || this.combat[i].initiative === undefined) {
+        this.combat[i].roll = Math.ceil(Math.random() * 20) + this.combat[i].dexterity;
       } else {
-        combatant.roll = Math.ceil(Math.random() * 20) + combatant.initiative;
+        this.combat[i].roll = Math.ceil(Math.random() * 20) + this.combat[i].initiative;
       }
-    });
+    }
     this.combat.sort(function(b, a) {
       return a.roll - b.roll;
     });

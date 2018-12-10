@@ -28,23 +28,39 @@ export class AppComponent implements OnInit {
   ) {}
 
   login(form) {
-    this.authenticationService.login(form.value.username, form.value.password);
+    console.log(form.value);
+    this.authenticationService
+      .login(form.value.username, form.value.password)
+      .subscribe(
+        data => {
+          console.log('logged in');
+          location.reload();
+        },
+        err => console.log(err)
+      );
   }
 
   logout() {
     this.authenticationService.logout();
-    if (this.authenticationService.checkLogin()) {
-      this.router.navigateByUrl('');
-    } else {
-      this.router.navigateByUrl('login');
-    }
   }
 
   register(form) {
     const user = new User();
     user.username = form.value.username;
     user.password = form.value.password;
-    this.authenticationService.register(form.value.user);
+    this.authenticationService.register(user).subscribe(
+      data => {
+        this.authenticationService
+          .login(form.value.username, form.value.password)
+          .subscribe(
+            data => {
+              location.reload();
+            },
+            err => console.log(err)
+          );
+      },
+      err => console.log(err)
+    );
   }
   checkLogin() {
     return this.authenticationService.checkLogin();
